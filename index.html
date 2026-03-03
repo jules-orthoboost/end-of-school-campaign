@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrthoBoost — End of School Campaign Copy</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #163055 0%, #29BBF6 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: #7AEFDF; }
+
+        .page-title {
+            font-size: 22px;
+            color: rgba(255,255,255,0.85);
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .campaign-badge {
+            display: inline-block;
+            background: #7AEFDF;
+            color: #163055;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .campaign-brief {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 20px 28px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .brief-title {
+            color: #7AEFDF;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .brief-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .brief-text strong { color: #7AEFDF; }
+
+        .persona-section {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+        }
+
+        .persona-header {
+            padding: 24px 32px;
+            color: white;
+            position: relative;
+        }
+
+        .persona-name {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .persona-desc {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+
+        .badge-approved { background: rgba(255,255,255,0.25); color: white; }
+        .badge-revised { background: #FDB913; color: #1a1a1a; }
+        .badge-new { background: #7AEFDF; color: #163055; }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+        }
+
+        .option-card {
+            padding: 28px 32px;
+            border-right: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .option-card:nth-child(even) { border-right: none; }
+
+        .option-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 13px;
+            color: white;
+            margin-bottom: 14px;
+        }
+
+        .copy-heading {
+            font-size: 22px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            color: #111;
+            letter-spacing: -0.3px;
+        }
+
+        .copy-subheading {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .copy-offer {
+            display: inline-block;
+            border: 2px dashed #ccc;
+            color: #888;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .copy-cta {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.3px;
+        }
+
+        /* Persona Color Themes */
+        .joe .persona-header { background: linear-gradient(135deg, #3182CE, #5B9BD5); }
+        .joe .option-number { background: #3182CE; }
+        .joe .copy-cta { background: #FDB913; color: #1a1a1a; }
+        .joe
+
+        .joey .persona-header { background: linear-gradient(135deg, #DD6B20, #ED7D52); }
+        .joey .option-number { background: #DD6B20; }
+        .joey .copy-cta { background: #DD6B20; }
+        .joey
+
+        .clarkson .persona-header { background: linear-gradient(135deg, #805AD5, #9F7AEA); }
+        .clarkson .option-number { background: #805AD5; }
+        .clarkson .copy-cta { background: #805AD5; }
+        .clarkson
+
+        .joseph .persona-header { background: linear-gradient(135deg, #2B6CB0, #2C5282); }
+        .joseph .option-number { background: #2B6CB0; }
+        .joseph .copy-cta { background: #2C5282; }
+        .joseph
+
+        .premium .persona-header { background: linear-gradient(135deg, #276749, #38A169); }
+        .premium .option-number { background: #276749; }
+        .premium .copy-cta { background: #276749; }
+        .premium
+
+        @media (max-width: 700px) {
+            .options-grid { grid-template-columns: 1fr; }
+            .option-card { border-right: none; border-bottom: 1px solid #f0f0f0; }
+            .option-card:last-child { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-header">
+    <div class="logo">Ortho<span>Boost</span></div>
+    <div class="page-title">Campaign Copy Framework</div>
+    <div class="campaign-badge">🎓 End of School Campaign · Revised v2.0</div>
+</div>
+
+<div class="campaign-brief">
+    <div class="brief-title">Campaign Goal</div>
+    <div class="brief-text">
+        <strong>Beat the summer rush</strong> — get patients to schedule treatment <strong>before summer starts</strong>.
+        Two approved headline options per ortho persona. All copy refocused on pre-summer urgency and strategic timing.
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- DR. A. JOE — Budget-Friendly Everyday Ortho -->
+<!-- ============================================================ -->
+<div class="persona-section joe">
+    <div class="persona-header">
+        <div class="persona-name">Dr. A. Joe — Budget-Friendly Everyday Ortho</div>
+        <div class="persona-desc">Budget-conscious families · Value shoppers · Mixed ages · Convenience-first</div>
+        <div class="status-row">
+            <span class="status-badge badge-approved">✓ Both Approved</span>
+        </div>
+    </div>
+    <div class="options-grid">
+
+        <div class="option-card">
+            <div class="option-number">1</div>
+            <div class="copy-heading">Before Summer Break = Best Time to Start</div>
+            <div class="copy-subheading">Flexible schedules, no missed school days, and payment plans built for real families. Get ahead of the rush.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Book Your Free Consultation →</div>
+        </div>
+
+        <div class="option-card">
+            <div class="option-number">2</div>
+            <div class="copy-heading">Don't Wait Until Summer</div>
+            <div class="copy-subheading">Schedule now while appointments are open and our best seasonal rates are available. Beat the rush.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Start Today →</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- DR. JOEY — Family-Focused Community Ortho -->
+<!-- ============================================================ -->
+<div class="persona-section joey">
+    <div class="persona-header">
+        <div class="persona-name">Dr. Joey — Family-Focused Community Ortho</div>
+        <div class="persona-desc">Families with kids & teens · Suburban + rural markets · Community-driven parents</div>
+        <div class="status-row">
+            <span class="status-badge badge-approved">✓ Both Approved</span>
+        </div>
+    </div>
+    <div class="options-grid">
+
+        <div class="option-card">
+            <div class="option-number">1</div>
+            <div class="copy-heading">Celebrate the Last Day of School With a New Smile</div>
+            <div class="copy-subheading">School's almost out — and it's the perfect time to give them something to smile about all summer long.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Schedule a Family Visit →</div>
+        </div>
+
+        <div class="option-card">
+            <div class="option-number">2</div>
+            <div class="copy-heading">Their Best Summer Starts With Their Best Smile</div>
+            <div class="copy-subheading">Beat the summer rush — get them in before school lets out so they're ready for camp, the pool, and everything in between.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Book a Free Consultation →</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- DR. K. CLARKSON — Adult Cosmetic-Focused Aesthetic Ortho -->
+<!-- ============================================================ -->
+<div class="persona-section clarkson">
+    <div class="persona-header">
+        <div class="persona-name">Dr. K. Clarkson — Adult Cosmetic-Focused Aesthetic Ortho</div>
+        <div class="persona-desc">Adults 25–55 · Cosmetic-driven patients · Professionals · Image-conscious</div>
+        <div class="status-row">
+            <span class="status-badge badge-approved">✓ Both Approved — originals #1 & #3</span>
+        </div>
+    </div>
+    <div class="options-grid">
+
+        <div class="option-card">
+            <div class="option-number">1</div>
+            <div class="copy-heading">This Summer, Let Your Smile Do the Talking</div>
+            <div class="copy-subheading">Start now and step into summer with the confidence you've been putting off. Discreet treatment, modern results.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Start Your Transformation →</div>
+        </div>
+
+        <div class="option-card">
+            <div class="option-number">2</div>
+            <div class="copy-heading">Your Summer Confidence Starts Here</div>
+            <div class="copy-subheading">Don't wait until fall. Begin your smile upgrade now and see real results by summer's end.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Book Your Consultation →</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- DR. JOSEPH — High-Expertise Clinical Ortho -->
+<!-- ============================================================ -->
+<div class="persona-section joseph">
+    <div class="persona-header">
+        <div class="persona-name">Dr. Joseph — High-Expertise Clinical Ortho</div>
+        <div class="persona-desc">Adults seeking expertise · Complex-case teens · Referral-driven · Credentials-first</div>
+        <div class="status-row">
+            <span class="status-badge badge-revised">↻ Both Revised</span>
+        </div>
+    </div>
+    <div class="options-grid">
+
+        <div class="option-card">
+            <div class="option-number">1</div>
+            <div class="copy-heading">Expert Orthodontic Care. Now Accepting New Patients.</div>
+            <div class="copy-subheading">Board-certified specialists with availability this season. The right time to get the care you've been researching.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Request Your Expert Consultation →</div>
+        </div>
+
+        <div class="option-card">
+            <div class="option-number">2</div>
+            <div class="copy-heading">The Right Care Starts With the Right Timing.</div>
+            <div class="copy-subheading">Pre-summer scheduling means fewer conflicts, more consistent appointments, and better outcomes from day one.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Talk to Our Team →</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PREMIUM FAMILY ORTHO -->
+<!-- ============================================================ -->
+<div class="persona-section premium">
+    <div class="persona-header">
+        <div class="persona-name">Premium Family Ortho</div>
+        <div class="persona-desc">Middle to upper-middle income families · Quality-first parents · Adults seeking Invisalign · Suburban + urban markets</div>
+        <div class="status-row">
+            <span class="status-badge badge-approved">✓ #1 Approved</span>
+            <span class="status-badge badge-new">★ #2 New</span>
+        </div>
+    </div>
+    <div class="options-grid">
+
+        <div class="option-card">
+            <div class="option-number">1</div>
+            <div class="copy-heading">Outstanding Care Shouldn't Wait Until Summer</div>
+            <div class="copy-subheading">Secure preferred appointment times before schedules fill up. Your family deserves unhurried, attentive care.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Reserve Your Appointment →</div>
+        </div>
+
+        <div class="option-card">
+            <div class="option-number">2</div>
+            <div class="copy-heading">Give Them a Head Start on Their Best Summer Yet</div>
+            <div class="copy-subheading">Proactive families start now. Beat the rush and begin treatment while there's still time to choose the schedule that works for you.</div>
+            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
+            <div class="copy-cta">Schedule a Consultation →</div>
+        </div>
+
+    </div>
+</div>
+
+<div style="text-align:center; color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 10px; padding-bottom: 20px;">
+    OrthoBoost · End of School Campaign · Revised Copy v2.0 · March 2026 · All offer details client-specific
+</div>
+
+</body>
+</html>
