@@ -4,108 +4,201 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OrthoBoost · End of School Campaign Templates</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0a; color: white; min-height: 100vh; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  .header { text-align: center; padding: 60px 24px 20px; }
-  .header h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
-  .header p { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
-  .header-legend { display: inline-flex; gap: 20px; font-size: 12px; color: rgba(255,255,255,0.35); }
+  :root {
+    --bg: #0a0a0a;
+    --blue: #29BBF6;
+    --teal: #7AEFDF;
+    --navy: #163055;
+    --text: #fff;
+    --text-dim: rgba(255,255,255,0.5);
+    --text-muted: rgba(255,255,255,0.25);
+    --border: rgba(255,255,255,0.07);
+    --card-bg: rgba(255,255,255,0.025);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    padding: 56px 24px 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .header-logo {
+    font-size: 11px; font-weight: 800; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .header h1 {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.8px;
+    background: linear-gradient(90deg, #fff 40%, var(--teal));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .header p { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
+  .header-legend {
+    display: inline-flex; gap: 20px;
+    font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px;
+  }
   .header-legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-  .legend-dot.pending { background: #555; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-dot.pending  { background: #444; }
   .legend-dot.approved { background: #22c55e; }
   .legend-dot.revision { background: #f59e0b; }
 
-  .section { max-width: 1200px; margin: 0 auto; padding: 24px 24px 48px; }
-  .section-label { font-size: 13px; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  /* ── WRAPPER ── */
+  .wrapper { max-width: 1160px; margin: 0 auto; padding: 24px 24px 64px; }
 
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  /* ── ACCORDION SECTION ── */
+  .persona-section { margin-bottom: 12px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
 
-  .template-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; }
+  .persona-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 22px;
+    background: rgba(255,255,255,0.03);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.18s;
+    border-bottom: 1px solid var(--border);
+  }
+  .persona-header:hover { background: rgba(255,255,255,0.055); }
 
+  .persona-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+
+  .persona-meta { flex: 1; min-width: 0; }
+  .persona-name {
+    font-size: 15px; font-weight: 800; letter-spacing: -0.3px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .persona-desc { font-size: 11px; color: var(--text-dim); font-weight: 500; margin-top: 2px; }
+
+  .persona-status-pills { display: flex; gap: 6px; flex-shrink: 0; }
+  .status-pill {
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.3);
+    transition: transform 0.15s;
+  }
+  .status-pill.pending  { background: #444; }
+  .status-pill.approved { background: #22c55e; }
+  .status-pill.revision { background: #f59e0b; }
+
+  .chevron {
+    flex-shrink: 0; width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1), color 0.18s;
+  }
+  .chevron svg { display: block; }
+  .persona-section.open .chevron { transform: rotate(180deg); color: var(--teal); }
+
+  /* ── ACCORDION BODY ── */
+  .persona-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.32s cubic-bezier(.4,0,.2,1);
+  }
+  .persona-section.open .persona-body { grid-template-rows: 1fr; }
+  .persona-body-inner { overflow: hidden; }
+
+  .grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    padding: 20px;
+  }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+
+  /* ── CARD ── */
+  .template-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+  }
   .template-card img { width: 100%; height: auto; display: block; }
+  .card-label {
+    padding: 10px 14px; font-size: 12px; font-weight: 700;
+    color: var(--text-dim); border-top: 1px solid var(--border);
+    letter-spacing: 0.2px;
+  }
 
-  .card-label { padding: 12px 16px; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.6); border-top: 1px solid rgba(255,255,255,0.04); }
+  /* ── FEEDBACK ── */
+  .feedback { padding: 14px 16px; border-top: 1px solid var(--border); }
 
-  /* ═══ FEEDBACK BOX ═══ */
-  .feedback { padding: 16px; border-top: 1px solid rgba(255,255,255,0.04); }
-
-  .fb-status { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-  .fb-status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .fb-status-dot.pending { background: #555; }
+  .fb-status { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .fb-status-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .fb-status-dot.pending  { background: #444; }
   .fb-status-dot.approved { background: #22c55e; }
   .fb-status-dot.revision { background: #f59e0b; }
-  .fb-status-text { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-  .fb-status-text.pending { color: #777; }
+  .fb-status-text { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .fb-status-text.pending  { color: #666; }
   .fb-status-text.approved { color: #22c55e; }
   .fb-status-text.revision { color: #f59e0b; }
 
-  .fb-buttons { display: flex; gap: 8px; margin-bottom: 12px; }
+  .fb-buttons { display: flex; gap: 8px; margin-bottom: 10px; }
   .fb-btn {
-    flex: 1; padding: 10px 12px; border-radius: 10px;
+    flex: 1; padding: 9px 10px;
+    border-radius: 9px; border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
-    cursor: pointer; transition: all 0.2s; border: none; text-transform: uppercase;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    cursor: pointer; transition: all 0.15s;
   }
-  .fb-btn-approve {
-    background: rgba(34,197,94,0.1); color: #22c55e; border: 1px solid rgba(34,197,94,0.2);
-  }
-  .fb-btn-approve:hover { background: rgba(34,197,94,0.2); }
-  .fb-btn-approve.active { background: #22c55e; color: white; border-color: #22c55e; }
-
-  .fb-btn-revise {
-    background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.2);
-  }
-  .fb-btn-revise:hover { background: rgba(245,158,11,0.2); }
-  .fb-btn-revise.active { background: #f59e0b; color: white; border-color: #f59e0b; }
+  .fb-btn:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.15); }
+  .fb-btn-approve.active { background: rgba(34,197,94,0.15); border-color: #22c55e; color: #22c55e; }
+  .fb-btn-revise.active  { background: rgba(245,158,11,0.15); border-color: #f59e0b; color: #f59e0b; }
 
   .fb-notes {
-    width: 100%; min-height: 70px; padding: 12px 14px;
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px; color: white; font-family: 'DM Sans', sans-serif;
-    font-size: 13px; line-height: 1.5; resize: vertical;
-    outline: none; transition: border-color 0.2s;
+    width: 100%; padding: 10px 12px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 9px; color: #fff; resize: vertical; min-height: 72px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; line-height: 1.5;
+    margin-bottom: 10px; transition: border-color 0.15s;
   }
-  .fb-notes::placeholder { color: rgba(255,255,255,0.2); }
-  .fb-notes:focus { border-color: rgba(255,255,255,0.2); }
+  .fb-notes:focus { outline: none; border-color: rgba(122,239,223,0.35); }
+  .fb-notes::placeholder { color: var(--text-muted); }
 
+  .fb-row { display: flex; align-items: center; gap: 10px; }
   .fb-save {
-    margin-top: 8px; padding: 8px 16px; border-radius: 8px;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.5); font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.2s;
+    padding: 8px 16px; border-radius: 8px;
+    background: rgba(122,239,223,0.1); border: 1px solid rgba(122,239,223,0.25);
+    color: var(--teal); font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.15s;
   }
-  .fb-save:hover { background: rgba(255,255,255,0.1); color: white; }
+  .fb-save:hover { background: rgba(122,239,223,0.18); border-color: rgba(122,239,223,0.45); }
+  .fb-saved-msg { font-size: 11px; color: #22c55e; font-weight: 700; opacity: 0; transition: opacity 0.2s; }
+  .fb-saved-msg.show { opacity: 1; }
 
-  .fb-saved-msg {
-    display: none; margin-top: 8px; font-size: 11px; color: #22c55e;
-    font-weight: 600; letter-spacing: 0.5px;
-  }
-  .fb-saved-msg.show { display: block; }
-
-  .fb-history { margin-top: 12px; }
+  .fb-history { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
   .fb-entry {
-    padding: 10px 12px; margin-bottom: 6px;
-    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);
-    border-radius: 8px;
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
   }
-  .fb-entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-  .fb-entry-status { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-  .fb-entry-date { font-size: 10px; color: rgba(255,255,255,0.25); }
-  .fb-entry-note { font-family: 'DM Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+  .fb-entry-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .fb-entry-status { font-size: 11px; font-weight: 700; }
+  .fb-entry-date { font-size: 10px; color: var(--text-muted); }
+  .fb-entry-note { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
 
-  .footer { text-align: center; padding: 24px; font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
-
-  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center; padding: 24px;
+    font-size: 10px; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase;
+    border-top: 1px solid var(--border);
+  }
 </style>
 </head>
 <body>
 
 <div class="header">
+  <div class="header-logo">OrthoBoost</div>
   <h1>End of School Campaign</h1>
   <p>10 Templates · 5 Personas · V1 &amp; V2 per Persona</p>
   <div class="header-legend">
@@ -115,65 +208,85 @@
   </div>
 </div>
 
-<div id="app"></div>
+<div class="wrapper">
+  <div id="app"></div>
+</div>
 
-<div class="footer">OrthoBoost · End of School Campaign · March 2026</div>
+<div class="footer">OrthoBoost · End of School Campaign · 2026</div>
 
 <script>
 const personas = [
-  { icon: '💰', name: 'Dr. A. Joe', desc: 'Budget-Friendly Everyday Ortho', templates: [
-    { id: 'joe-v1', img: 'End-of-School_V1_Static_Dr-Joe-Client-Template.png', label: 'V1: Before School Ends' },
-    { id: 'joe-v2', img: 'End-of-School_V2_Static_Dr-Joe-Client-Template.png', label: "V2: Don't Wait Until Summer" },
+  { id: 'joe',      icon: '💰', name: 'Dr. A. Joe',      desc: 'Budget-Friendly Everyday Ortho', templates: [
+    { id: 'joe-v1',      img: 'End-of-School_V1_Static_Dr-Joe-Client-Template.png',      label: 'V1 · Before School Ends' },
+    { id: 'joe-v2',      img: 'End-of-School_V2_Static_Dr-Joe-Client-Template.png',      label: "V2 · Don't Wait Until Summer" },
   ]},
-  { icon: '👨‍👩‍👧', name: 'Dr. M. Rogers', desc: 'Family-Focused Community Ortho', templates: [
-    { id: 'rogers-v1', img: 'End-of-School_V1_Static_Dr-Rogers-Client-Template.png', label: 'V1: Celebrate the End of School' },
-    { id: 'rogers-v2', img: 'End-of-School_V2_Static_Dr-Rogers-Client-Template.png', label: 'V2: Their Best Summer' },
+  { id: 'rogers',   icon: '👨‍👩‍👧', name: 'Dr. M. Rogers',   desc: 'Family-Focused Community Ortho', templates: [
+    { id: 'rogers-v1',   img: 'End-of-School_V1_Static_Dr-Rogers-Client-Template.png',   label: 'V1 · Celebrate the End of School' },
+    { id: 'rogers-v2',   img: 'End-of-School_V2_Static_Dr-Rogers-Client-Template.png',   label: 'V2 · Their Best Summer' },
   ]},
-  { icon: '✨', name: 'Dr. K. Clarkson', desc: 'Adult Cosmetic-Focused Aesthetic Ortho', templates: [
-    { id: 'clarkson-v1', img: 'End-of-School_V1_Static_Dr-Clarkson-Client-Template.png', label: 'V1: Let Your Smile Do the Talking' },
-    { id: 'clarkson-v2', img: 'End-of-School_V2_Static_Dr-Clarkson-Client-Template.png', label: 'V2: Your Summer Confidence' },
+  { id: 'clarkson', icon: '✨', name: 'Dr. K. Clarkson', desc: 'Adult Cosmetic-Focused Aesthetic Ortho', templates: [
+    { id: 'clarkson-v1', img: 'End-of-School_V1_Static_Dr-Clarkson-Client-Template.png', label: 'V1 · Let Your Smile Do the Talking' },
+    { id: 'clarkson-v2', img: 'End-of-School_V2_Static_Dr-Clarkson-Client-Template.png', label: 'V2 · Your Summer Confidence' },
   ]},
-  { icon: '🔬', name: 'Dr. C. Yang', desc: 'High-Expertise Clinical Ortho', templates: [
-    { id: 'yang-v1', img: 'End-of-School_V1_Static_Dr-Yang-Client-Template.png', label: 'V1: Expert Orthodontic Care' },
-    { id: 'yang-v2', img: 'End-of-School_V2_Static_Dr-Yang-Client-Template.png', label: 'V2: The Right Care, Right Timing' },
+  { id: 'yang',     icon: '🔬', name: 'Dr. C. Yang',     desc: 'High-Expertise Clinical Ortho', templates: [
+    { id: 'yang-v1',     img: 'End-of-School_V1_Static_Dr-Yang-Client-Template.png',     label: 'V1 · Expert Orthodontic Care' },
+    { id: 'yang-v2',     img: 'End-of-School_V2_Static_Dr-Yang-Client-Template.png',     label: 'V2 · The Right Care, Right Timing' },
   ]},
-  { icon: '🏛️', name: 'Dr. G. House', desc: 'Premium Family Ortho', templates: [
-    { id: 'house-v1', img: 'End-of-School_V1_Static_Dr-House-Client-Template.png', label: 'V1: Outstanding Care' },
-    { id: 'house-v2', img: 'End-of-School_V2_Static_Dr-House-Client-Template.png', label: 'V2: Give Them a Head Start' },
+  { id: 'house',    icon: '🏛️', name: 'Dr. G. House',    desc: 'Premium Family Ortho', templates: [
+    { id: 'house-v1',    img: 'End-of-School_V1_Static_Dr-House-Client-Template.png',    label: 'V1 · Outstanding Care' },
+    { id: 'house-v2',    img: 'End-of-School_V2_Static_Dr-House-Client-Template.png',    label: 'V2 · Give Them a Head Start' },
   ]},
 ];
 
-// LocalStorage helpers
+/* ─ Storage helpers ─ */
 function getFeedback(id) {
-  const data = localStorage.getItem('fb_' + id);
-  return data ? JSON.parse(data) : { status: 'pending', entries: [] };
+  try {
+    const d = localStorage.getItem('fb_' + id);
+    return d ? JSON.parse(d) : { status: 'pending', entries: [], currentNote: '' };
+  } catch(e) { return { status: 'pending', entries: [], currentNote: '' }; }
 }
 function saveFeedback(id, fb) {
-  localStorage.setItem('fb_' + id, JSON.stringify(fb));
+  try { localStorage.setItem('fb_' + id, JSON.stringify(fb)); } catch(e) {}
 }
 
+/* ─ Derive pill statuses for a persona ─ */
+function personaPills(persona) {
+  return persona.templates.map(t => {
+    const fb = getFeedback(t.id);
+    return fb.status || 'pending';
+  });
+}
+
+/* ─ Render ─ */
 function render() {
   const app = document.getElementById('app');
+  // Preserve open/closed state across re-renders
+  const openState = {};
+  document.querySelectorAll('.persona-section').forEach(el => {
+    openState[el.dataset.pid] = el.classList.contains('open');
+  });
+
   let html = '';
-
   personas.forEach(p => {
-    html += `<div class="section">
-      <div class="section-label">${p.icon} ${p.name} · ${p.desc}</div>
-      <div class="grid">`;
+    const pills = personaPills(p);
+    const pillsHtml = pills.map(s =>
+      `<span class="status-pill ${s}"></span>`
+    ).join('');
 
+    let cardsHtml = '';
     p.templates.forEach(t => {
       const fb = getFeedback(t.id);
-      const statusClass = fb.status || 'pending';
-      const statusLabel = statusClass === 'approved' ? 'Approved' : statusClass === 'revision' ? 'Revision Requested' : 'Pending Review';
+      const sc = fb.status || 'pending';
+      const sl = sc === 'approved' ? 'Approved' : sc === 'revision' ? 'Revision Requested' : 'Pending Review';
 
       let entriesHtml = '';
       if (fb.entries && fb.entries.length > 0) {
         entriesHtml = '<div class="fb-history">';
         fb.entries.slice().reverse().forEach(e => {
-          const color = e.status === 'approved' ? '#22c55e' : '#f59e0b';
+          const col = e.status === 'approved' ? '#22c55e' : '#f59e0b';
           entriesHtml += `<div class="fb-entry">
             <div class="fb-entry-header">
-              <span class="fb-entry-status" style="color:${color}">${e.status === 'approved' ? '✓ Approved' : '↻ Revision'}</span>
+              <span class="fb-entry-status" style="color:${col}">${e.status === 'approved' ? '✓ Approved' : '↻ Revision'}</span>
               <span class="fb-entry-date">${e.date}</span>
             </div>
             ${e.note ? `<div class="fb-entry-note">${e.note}</div>` : ''}
@@ -182,21 +295,21 @@ function render() {
         entriesHtml += '</div>';
       }
 
-      html += `
+      cardsHtml += `
         <div class="template-card">
           <img src="${t.img}" alt="${t.label}" loading="lazy">
           <div class="card-label">${t.label}</div>
-          <div class="feedback" id="fb-${t.id}">
+          <div class="feedback">
             <div class="fb-status">
-              <span class="fb-status-dot ${statusClass}"></span>
-              <span class="fb-status-text ${statusClass}">${statusLabel}</span>
+              <span class="fb-status-dot ${sc}"></span>
+              <span class="fb-status-text ${sc}">${sl}</span>
             </div>
             <div class="fb-buttons">
-              <button class="fb-btn fb-btn-approve ${fb.status === 'approved' ? 'active' : ''}" onclick="setStatus('${t.id}', 'approved')">✓ Approve</button>
-              <button class="fb-btn fb-btn-revise ${fb.status === 'revision' ? 'active' : ''}" onclick="setStatus('${t.id}', 'revision')">↻ Request Revision</button>
+              <button class="fb-btn fb-btn-approve ${fb.status === 'approved' ? 'active' : ''}" onclick="setStatus('${t.id}','approved')">✓ Approve</button>
+              <button class="fb-btn fb-btn-revise ${fb.status === 'revision' ? 'active' : ''}" onclick="setStatus('${t.id}','revision')">↻ Request Revision</button>
             </div>
             <textarea class="fb-notes" id="notes-${t.id}" placeholder="Add notes, feedback, or revision details...">${fb.currentNote || ''}</textarea>
-            <div style="display:flex;align-items:center;gap:12px">
+            <div class="fb-row">
               <button class="fb-save" onclick="saveNote('${t.id}')">Save Note</button>
               <span class="fb-saved-msg" id="saved-${t.id}">✓ Saved</span>
             </div>
@@ -205,25 +318,53 @@ function render() {
         </div>`;
     });
 
-    html += '</div></div>';
+    // Default open on first load (openState will be empty)
+    const isOpen = (p.id in openState) ? openState[p.id] : true;
+
+    html += `
+      <div class="persona-section ${isOpen ? 'open' : ''}" data-pid="${p.id}">
+        <div class="persona-header" onclick="toggleSection('${p.id}')">
+          <span class="persona-icon">${p.icon}</span>
+          <div class="persona-meta">
+            <div class="persona-name">${p.name}</div>
+            <div class="persona-desc">${p.desc}</div>
+          </div>
+          <div class="persona-status-pills">${pillsHtml}</div>
+          <div class="chevron">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-body-inner">
+            <div class="grid">${cardsHtml}</div>
+          </div>
+        </div>
+      </div>`;
   });
 
   app.innerHTML = html;
+}
+
+function toggleSection(pid) {
+  const el = document.querySelector(`.persona-section[data-pid="${pid}"]`);
+  if (el) el.classList.toggle('open');
 }
 
 function setStatus(id, status) {
   const fb = getFeedback(id);
   fb.status = status;
   const note = document.getElementById('notes-' + id)?.value?.trim() || '';
-  if (note || status) {
-    fb.entries = fb.entries || [];
-    fb.entries.push({
-      status: status,
-      note: note,
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-    });
-    fb.currentNote = '';
-  }
+  fb.entries = fb.entries || [];
+  fb.entries.push({
+    status, note,
+    date: new Date().toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    })
+  });
+  fb.currentNote = '';
   saveFeedback(id, fb);
   render();
 }
@@ -233,12 +374,10 @@ function saveNote(id) {
   fb.currentNote = document.getElementById('notes-' + id)?.value || '';
   saveFeedback(id, fb);
   const msg = document.getElementById('saved-' + id);
-  msg.classList.add('show');
-  setTimeout(() => msg.classList.remove('show'), 2000);
+  if (msg) { msg.classList.add('show'); setTimeout(() => msg.classList.remove('show'), 2000); }
 }
 
 render();
 </script>
-
 </body>
 </html>
