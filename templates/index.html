@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OrthoBoost · End of School Campaign Templates</title>
+<title>OrthoBoost · Summer Campaign Templates</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,6 +27,23 @@
     min-height: 100vh;
   }
 
+  /* ── SETUP BANNER ── */
+  .setup-banner {
+    background: rgba(245,158,11,0.12);
+    border-bottom: 1px solid rgba(245,158,11,0.3);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #f59e0b;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-align: center;
+  }
+  .setup-banner.hidden { display: none; }
+
   /* ── HEADER ── */
   .header {
     text-align: center;
@@ -46,6 +63,19 @@
     margin-bottom: 6px;
   }
   .header p { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
+  .header-how-to {
+    display: inline-block;
+    background: rgba(122,239,223,0.08);
+    border: 1px solid rgba(122,239,223,0.2);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 20px;
+    max-width: 580px;
+    line-height: 1.6;
+  }
+  .header-how-to strong { color: var(--teal); }
   .header-legend {
     display: inline-flex; gap: 20px;
     font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px;
@@ -86,7 +116,6 @@
   .status-pill {
     width: 10px; height: 10px; border-radius: 50%;
     border: 2px solid rgba(0,0,0,0.3);
-    transition: transform 0.15s;
   }
   .status-pill.pending  { background: #444; }
   .status-pill.approved { background: #22c55e; }
@@ -110,9 +139,33 @@
   .persona-section.open .persona-body { grid-template-rows: 1fr; }
   .persona-body-inner { overflow: hidden; }
 
+  /* ── CAMPAIGN GROUP LABEL ── */
+  .campaign-group {
+    padding: 14px 20px 6px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .campaign-group:first-of-type { border-top: none; padding-top: 20px; }
+  .campaign-group-pill {
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  .pill-eos { background: rgba(41,187,246,0.15); color: #29BBF6; }
+  .pill-summer { background: rgba(122,239,223,0.15); color: #7AEFDF; }
+
   .grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    padding: 20px;
+    padding: 8px 20px 20px;
   }
   @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
 
@@ -131,16 +184,6 @@
 
   /* ── FEEDBACK ── */
   .feedback { padding: 14px 16px; border-top: 1px solid var(--border); }
-
-  .fb-status { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .fb-status-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-  .fb-status-dot.pending  { background: #444; }
-  .fb-status-dot.approved { background: #22c55e; }
-  .fb-status-dot.revision { background: #f59e0b; }
-  .fb-status-text { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-  .fb-status-text.pending  { color: #666; }
-  .fb-status-text.approved { color: #22c55e; }
-  .fb-status-text.revision { color: #f59e0b; }
 
   .fb-buttons { display: flex; gap: 8px; margin-bottom: 10px; }
   .fb-btn {
@@ -166,26 +209,40 @@
   .fb-notes:focus { outline: none; border-color: rgba(122,239,223,0.35); }
   .fb-notes::placeholder { color: var(--text-muted); }
 
-  .fb-row { display: flex; align-items: center; gap: 10px; }
-  .fb-save {
-    padding: 8px 16px; border-radius: 8px;
-    background: rgba(122,239,223,0.1); border: 1px solid rgba(122,239,223,0.25);
-    color: var(--teal); font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.15s;
+  .fb-selection-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 8px;
   }
-  .fb-save:hover { background: rgba(122,239,223,0.18); border-color: rgba(122,239,223,0.45); }
-  .fb-saved-msg { font-size: 11px; color: #22c55e; font-weight: 700; opacity: 0; transition: opacity 0.2s; }
-  .fb-saved-msg.show { opacity: 1; }
 
-  .fb-history { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
-  .fb-entry {
-    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-    border-radius: 8px; padding: 10px 12px;
+  .fb-submit {
+    width: 100%; padding: 11px 16px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(41,187,246,0.15), rgba(122,239,223,0.15));
+    border: 1px solid rgba(122,239,223,0.3);
+    color: var(--teal);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.5px;
+    cursor: pointer; transition: all 0.18s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
   }
-  .fb-entry-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
-  .fb-entry-status { font-size: 11px; font-weight: 700; }
-  .fb-entry-date { font-size: 10px; color: var(--text-muted); }
-  .fb-entry-note { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+  .fb-submit:hover {
+    background: linear-gradient(135deg, rgba(41,187,246,0.25), rgba(122,239,223,0.25));
+    border-color: rgba(122,239,223,0.55);
+  }
+
+  .fb-submitted-badge {
+    display: none;
+    align-items: center; justify-content: center; gap: 6px;
+    width: 100%; padding: 10px;
+    border-radius: 9px;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #22c55e;
+    font-size: 12px; font-weight: 700;
+    margin-top: 8px;
+  }
+  .fb-submitted-badge.show { display: flex; }
 
   /* ── FOOTER ── */
   .footer {
@@ -197,12 +254,19 @@
 </head>
 <body>
 
+<div class="setup-banner" id="setupBanner">
+  ⚙️ &nbsp;<strong>Setup needed:</strong>&nbsp; Replace <code>YOUR_GOOGLE_FORM_URL</code> and entry IDs in the FORM_CONFIG below to activate feedback submission.
+</div>
+
 <div class="header">
   <div class="header-logo">OrthoBoost</div>
-  <h1>End of School Campaign</h1>
-  <p>10 Templates · 5 Personas · V1 &amp; V2 per Persona</p>
+  <h1>Summer Campaign Templates</h1>
+  <p>Summer 2026 · Social Posts · 6 Personas · V1 &amp; V2</p>
+  <div class="header-how-to">
+    <strong>How to review:</strong> Select Approve or Request Revision for each template, add any notes, then click <strong>Submit to Jules</strong>. Your feedback opens in a quick Google Form — just hit Send.
+  </div>
   <div class="header-legend">
-    <span><span class="legend-dot pending"></span> Pending Review</span>
+    <span><span class="legend-dot pending"></span> Not Yet Reviewed</span>
     <span><span class="legend-dot approved"></span> Approved</span>
     <span><span class="legend-dot revision"></span> Revision Requested</span>
   </div>
@@ -212,114 +276,204 @@
   <div id="app"></div>
 </div>
 
-<div class="footer">OrthoBoost · End of School Campaign · 2026</div>
+<div class="footer">OrthoBoost · Campaign Templates · 2026</div>
 
 <script>
+/* ═════════════════════════════════════════════════════
+   FORM CONFIGURATION
+   ──────────────────────────────────────────────────────
+   Steps to set up:
+   1. Go to forms.google.com and create a new form
+   2. Add these 4 questions:
+        - "Template" (Short answer)
+        - "Decision" (Multiple choice: Approve / Request Revision)
+        - "Notes" (Paragraph)
+        - "Your name" (Short answer, not required)
+   3. Click the 3-dot menu → Get pre-filled link
+   4. Fill in dummy values, click Get Link, copy the URL
+   5. From that URL, find the entry IDs (entry.XXXXXXXXX)
+      and paste them below
+   6. Paste your form's viewform URL into formUrl
+   7. Set isConfigured: true
+   ══════════════════════════════════════════════════════ */
+const FORM_CONFIG = {
+  formUrl:      'https://docs.google.com/forms/d/e/1FAIpQLSdNxImfpvESzHp8Et7xEu2BP40eF15o57ZpZzDuVJd0xnaaBQ/viewform',
+  fields: {
+    template:   'entry.1067005555',
+    decision:   'entry.1939413000',
+    notes:      'entry.1161349069',
+    reviewer:   'entry.1507204568',
+  },
+  isConfigured: true,
+};
+
+if (FORM_CONFIG.isConfigured) {
+  document.getElementById('setupBanner').classList.add('hidden');
+}
+
+/* ── Persona + template data ── */
 const personas = [
-  { id: 'joe',      icon: '💰', name: 'Dr. A. Joe',      desc: 'Budget-Friendly Everyday Ortho', templates: [
-    { id: 'joe-v1',      img: 'End-of-School_V1_Static_Dr-Joe-Client-Template.png',      label: 'V1 · Before School Ends' },
-    { id: 'joe-v2',      img: 'End-of-School_V2_Static_Dr-Joe-Client-Template.png',      label: "V2 · Don't Wait Until Summer" },
-  ]},
-  { id: 'rogers',   icon: '👨‍👩‍👧', name: 'Dr. M. Rogers',   desc: 'Family-Focused Community Ortho', templates: [
-    { id: 'rogers-v1',   img: 'End-of-School_V1_Static_Dr-Rogers-Client-Template.png',   label: 'V1 · Celebrate the End of School' },
-    { id: 'rogers-v2',   img: 'End-of-School_V2_Static_Dr-Rogers-Client-Template.png',   label: 'V2 · Their Best Summer' },
-  ]},
-  { id: 'clarkson', icon: '✨', name: 'Dr. K. Clarkson', desc: 'Adult Cosmetic-Focused Aesthetic Ortho', templates: [
-    { id: 'clarkson-v1', img: 'End-of-School_V1_Static_Dr-Clarkson-Client-Template.png', label: 'V1 · Let Your Smile Do the Talking' },
-    { id: 'clarkson-v2', img: 'End-of-School_V2_Static_Dr-Clarkson-Client-Template.png', label: 'V2 · Your Summer Confidence' },
-  ]},
-  { id: 'yang',     icon: '🔬', name: 'Dr. C. Yang',     desc: 'High-Expertise Clinical Ortho', templates: [
-    { id: 'yang-v1',     img: 'End-of-School_V1_Static_Dr-Yang-Client-Template.png',     label: 'V1 · Expert Orthodontic Care' },
-    { id: 'yang-v2',     img: 'End-of-School_V2_Static_Dr-Yang-Client-Template.png',     label: 'V2 · The Right Care, Right Timing' },
-  ]},
-  { id: 'house',    icon: '🏛️', name: 'Dr. G. House',    desc: 'Premium Family Ortho', templates: [
-    { id: 'house-v1',    img: 'End-of-School_V1_Static_Dr-House-Client-Template.png',    label: 'V1 · Outstanding Care' },
-    { id: 'house-v2',    img: 'End-of-School_V2_Static_Dr-House-Client-Template.png',    label: 'V2 · Give Them a Head Start' },
-  ]},
+  {
+    id: 'joe', icon: '💰', name: 'Dr. A. Joe', desc: 'Budget-Friendly Everyday Ortho',
+    summer: [
+      { id: 'joe-sum-v1', img: '1_TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. A. Joe.png', label: 'Summer 2026 · V1' },
+      { id: 'joe-sum-v2', img: '4_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. A. Joe.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'rogers', icon: '👨‍👩‍👧', name: 'Dr. M. Rogers', desc: 'Family-Focused Community Ortho',
+    summer: [
+      { id: 'rogers-sum-v1', img: '8_TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. M. Rogers.png', label: 'Summer 2026 · V1' },
+      { id: 'rogers-sum-v2', img: '2_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. M. Rogers.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'clarkson', icon: '✨', name: 'Dr. K. Clarkson', desc: 'Adult Cosmetic-Focused Aesthetic Ortho',
+    summer: [
+      { id: 'clarkson-sum-v1', img: '3_TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. K Clarkson.png', label: 'Summer 2026 · V1' },
+      { id: 'clarkson-sum-v2', img: '7_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. K Clarkson.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'houser', icon: '🏠', name: 'Dr. D. Houser', desc: 'Community & Kids-Focused Ortho',
+    summer: [
+      { id: 'houser-sum-v1', img: '5_TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. D Houser.png', label: 'Summer 2026 · V1' },
+      { id: 'houser-sum-v2', img: '9_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. D Houser.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'yang', icon: '🔬', name: 'Dr. C. Yang', desc: 'High-Expertise Clinical Ortho',
+    summer: [
+      { id: 'yang-sum-v1', img: '10_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. C Yang.png', label: 'Summer 2026 · V1' },
+      { id: 'yang-sum-v2', img: '12_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. C Yang.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'house', icon: '🏛️', name: 'Dr. G. House', desc: 'Premium Family Ortho',
+    summer: [
+      { id: 'house-sum-v1', img: 'TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. G House.png', label: 'Summer 2026 · V1' },
+      { id: 'house-sum-v2', img: 'TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. G House.png', label: 'Summer 2026 · V2' },
+    ],
+  },
 ];
 
-/* ─ Storage helpers ─ */
-function getFeedback(id) {
-  try {
-    const d = localStorage.getItem('fb_' + id);
-    return d ? JSON.parse(d) : { status: 'pending', entries: [], currentNote: '' };
-  } catch(e) { return { status: 'pending', entries: [], currentNote: '' }; }
-}
-function saveFeedback(id, fb) {
-  try { localStorage.setItem('fb_' + id, JSON.stringify(fb)); } catch(e) {}
+/* ── Session state ── */
+const sessionState = {};
+function getState(id) {
+  return sessionState[id] || (sessionState[id] = { status: 'pending', note: '', submitted: false });
 }
 
-/* ─ Derive pill statuses for a persona ─ */
-function personaPills(persona) {
-  return persona.templates.map(t => {
-    const fb = getFeedback(t.id);
-    return fb.status || 'pending';
-  });
+/* ── Build Google Form pre-fill URL ── */
+function buildFormUrl(templateLabel, personaName, status, notes) {
+  if (!FORM_CONFIG.isConfigured) return null;
+  const url = new URL(FORM_CONFIG.formUrl);
+  url.searchParams.set('usp', 'pp_url');
+  url.searchParams.set(FORM_CONFIG.fields.template, `${personaName} — ${templateLabel}`);
+  url.searchParams.set(FORM_CONFIG.fields.decision, status === 'approved' ? 'Approve' : 'Request Revision');
+  if (notes) url.searchParams.set(FORM_CONFIG.fields.notes, notes);
+  return url.toString();
 }
 
-/* ─ Render ─ */
+function submitFeedback(id, templateLabel, personaName) {
+  const state = getState(id);
+  const note = document.getElementById('notes-' + id)?.value?.trim() || '';
+  state.note = note;
+
+  if (!FORM_CONFIG.isConfigured) {
+    alert('The feedback form hasn\'t been configured yet. Please contact Jules directly.');
+    return;
+  }
+
+  const formUrl = buildFormUrl(templateLabel, personaName, state.status, note);
+  if (formUrl) {
+    window.open(formUrl, '_blank');
+    state.submitted = true;
+    render();
+  }
+}
+
+function setStatus(id, status) {
+  const state = getState(id);
+  state.status = status;
+  state.submitted = false;
+  const noteEl = document.getElementById('notes-' + id);
+  if (noteEl) state.note = noteEl.value;
+  render();
+}
+
+function onNoteInput(id) {
+  const noteEl = document.getElementById('notes-' + id);
+  if (noteEl) getState(id).note = noteEl.value;
+}
+
+const openSections = new Set();
+
+function toggleSection(pid) {
+  const el = document.querySelector(`.persona-section[data-pid="${pid}"]`);
+  if (!el) return;
+  if (el.classList.contains('open')) { openSections.delete(pid); el.classList.remove('open'); }
+  else { openSections.add(pid); el.classList.add('open'); }
+}
+
+/* ── Build a single template card ── */
+function buildCard(t, personaName) {
+  const state = getState(t.id);
+  const sc = state.status;
+  const approveActive = sc === 'approved' ? 'active' : '';
+  const reviseActive  = sc === 'revision'  ? 'active' : '';
+  const submittedBadge = state.submitted
+    ? `<div class="fb-submitted-badge show">✓ Feedback sent — thank you!</div>` : '';
+
+  const safeLabel = t.label.replace(/'/g, "\\'");
+  const safeName  = personaName.replace(/'/g, "\\'");
+
+  return `
+    <div class="template-card">
+      <img src="${t.img}" alt="${t.label}" loading="lazy">
+      <div class="card-label">${t.label}</div>
+      <div class="feedback">
+        <div class="fb-selection-label">Your decision</div>
+        <div class="fb-buttons">
+          <button class="fb-btn fb-btn-approve ${approveActive}" onclick="setStatus('${t.id}','approved')">✓ Approve</button>
+          <button class="fb-btn fb-btn-revise ${reviseActive}"  onclick="setStatus('${t.id}','revision')">↻ Request Revision</button>
+        </div>
+        <textarea
+          class="fb-notes"
+          id="notes-${t.id}"
+          placeholder="Add notes or revision details (optional)..."
+          oninput="onNoteInput('${t.id}')"
+        >${state.note || ''}</textarea>
+        <button class="fb-submit" onclick="submitFeedback('${t.id}','${safeLabel}','${safeName}')">
+          📬 Submit to Jules →
+        </button>
+        ${submittedBadge}
+      </div>
+    </div>`;
+}
+
+/* ── Render ── */
 function render() {
   const app = document.getElementById('app');
-  // Preserve open/closed state across re-renders
-  const openState = {};
-  document.querySelectorAll('.persona-section').forEach(el => {
-    openState[el.dataset.pid] = el.classList.contains('open');
-  });
-
   let html = '';
+
   personas.forEach(p => {
-    const pills = personaPills(p);
-    const pillsHtml = pills.map(s =>
-      `<span class="status-pill ${s}"></span>`
-    ).join('');
+    const isOpen = openSections.has(p.id) || (openSections.size === 0);
+    if (openSections.size === 0) openSections.add(p.id);
 
-    let cardsHtml = '';
-    p.templates.forEach(t => {
-      const fb = getFeedback(t.id);
-      const sc = fb.status || 'pending';
-      const sl = sc === 'approved' ? 'Approved' : sc === 'revision' ? 'Revision Requested' : 'Pending Review';
+    // Status pills (summer only)
+    const pillsHtml = p.summer.map(t => {
+      const s = getState(t.id).status;
+      return `<span class="status-pill ${s}"></span>`;
+    }).join('');
 
-      let entriesHtml = '';
-      if (fb.entries && fb.entries.length > 0) {
-        entriesHtml = '<div class="fb-history">';
-        fb.entries.slice().reverse().forEach(e => {
-          const col = e.status === 'approved' ? '#22c55e' : '#f59e0b';
-          entriesHtml += `<div class="fb-entry">
-            <div class="fb-entry-header">
-              <span class="fb-entry-status" style="color:${col}">${e.status === 'approved' ? '✓ Approved' : '↻ Revision'}</span>
-              <span class="fb-entry-date">${e.date}</span>
-            </div>
-            ${e.note ? `<div class="fb-entry-note">${e.note}</div>` : ''}
-          </div>`;
-        });
-        entriesHtml += '</div>';
-      }
-
-      cardsHtml += `
-        <div class="template-card">
-          <img src="${t.img}" alt="${t.label}" loading="lazy">
-          <div class="card-label">${t.label}</div>
-          <div class="feedback">
-            <div class="fb-status">
-              <span class="fb-status-dot ${sc}"></span>
-              <span class="fb-status-text ${sc}">${sl}</span>
-            </div>
-            <div class="fb-buttons">
-              <button class="fb-btn fb-btn-approve ${fb.status === 'approved' ? 'active' : ''}" onclick="setStatus('${t.id}','approved')">✓ Approve</button>
-              <button class="fb-btn fb-btn-revise ${fb.status === 'revision' ? 'active' : ''}" onclick="setStatus('${t.id}','revision')">↻ Request Revision</button>
-            </div>
-            <textarea class="fb-notes" id="notes-${t.id}" placeholder="Add notes, feedback, or revision details...">${fb.currentNote || ''}</textarea>
-            <div class="fb-row">
-              <button class="fb-save" onclick="saveNote('${t.id}')">Save Note</button>
-              <span class="fb-saved-msg" id="saved-${t.id}">✓ Saved</span>
-            </div>
-            ${entriesHtml}
-          </div>
+    // Build Summer section
+    const sumSection = `
+        <div class="campaign-group">
+          Summer 2026 <span class="campaign-group-pill pill-summer">Social Post</span>
+        </div>
+        <div class="grid">
+          ${p.summer.map(t => buildCard(t, p.name)).join('')}
         </div>`;
-    });
-
-    // Default open on first load (openState will be empty)
-    const isOpen = (p.id in openState) ? openState[p.id] : true;
 
     html += `
       <div class="persona-section ${isOpen ? 'open' : ''}" data-pid="${p.id}">
@@ -338,43 +492,13 @@ function render() {
         </div>
         <div class="persona-body">
           <div class="persona-body-inner">
-            <div class="grid">${cardsHtml}</div>
+            ${sumSection}
           </div>
         </div>
       </div>`;
   });
 
   app.innerHTML = html;
-}
-
-function toggleSection(pid) {
-  const el = document.querySelector(`.persona-section[data-pid="${pid}"]`);
-  if (el) el.classList.toggle('open');
-}
-
-function setStatus(id, status) {
-  const fb = getFeedback(id);
-  fb.status = status;
-  const note = document.getElementById('notes-' + id)?.value?.trim() || '';
-  fb.entries = fb.entries || [];
-  fb.entries.push({
-    status, note,
-    date: new Date().toLocaleDateString('en-US', {
-      month: 'short', day: 'numeric', year: 'numeric',
-      hour: '2-digit', minute: '2-digit'
-    })
-  });
-  fb.currentNote = '';
-  saveFeedback(id, fb);
-  render();
-}
-
-function saveNote(id) {
-  const fb = getFeedback(id);
-  fb.currentNote = document.getElementById('notes-' + id)?.value || '';
-  saveFeedback(id, fb);
-  const msg = document.getElementById('saved-' + id);
-  if (msg) { msg.classList.add('show'); setTimeout(() => msg.classList.remove('show'), 2000); }
 }
 
 render();
