@@ -217,6 +217,144 @@
             .option-card { border-right: none; border-bottom: 1px solid #f0f0f0; }
             .option-card:last-child { border-bottom: none; }
         }
+
+        /* ── FLOATING FEEDBACK BUTTON ── */
+        .feedback-fab {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 22px;
+            background: #163055;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+            text-decoration: none;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+        }
+        .feedback-fab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(0,0,0,0.4);
+            background: #1a3d6e;
+        }
+        .feedback-fab-dot {
+            width: 8px;
+            height: 8px;
+            background: #7AEFDF;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── FEEDBACK MODAL OVERLAY ── */
+        .feedback-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .feedback-overlay.open { display: flex; }
+
+        .feedback-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .feedback-modal h2 {
+            font-size: 22px;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 6px;
+        }
+        .feedback-modal p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+        .feedback-field { margin-bottom: 16px; }
+        .feedback-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #444;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .feedback-field select,
+        .feedback-field textarea,
+        .feedback-field input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            color: #111;
+            transition: border-color 0.15s;
+            resize: vertical;
+        }
+        .feedback-field select:focus,
+        .feedback-field textarea:focus,
+        .feedback-field input:focus {
+            outline: none;
+            border-color: #29BBF6;
+        }
+        .feedback-field textarea { min-height: 100px; }
+        .feedback-modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+        }
+        .btn-submit-feedback {
+            flex: 1;
+            padding: 12px 20px;
+            background: #163055;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-submit-feedback:hover { background: #1a3d6e; }
+        .btn-cancel-feedback {
+            padding: 12px 20px;
+            background: #f3f4f6;
+            color: #555;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-cancel-feedback:hover { background: #e5e7eb; }
+
+        .feedback-form-note {
+            font-size: 11px;
+            color: #aaa;
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -396,9 +534,122 @@
     </div>
 </div>
 
-<div style="text-align:center; color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 10px; padding-bottom: 20px;">
+<div style="text-align:center; color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 10px; padding-bottom: 80px;">
     OrthoBoost · End of School Campaign · Revised Copy v2.0 · March 2026 · All offer details client-specific
 </div>
+
+<!-- ── FLOATING FEEDBACK BUTTON ── -->
+<button class="feedback-fab" onclick="document.getElementById('feedbackOverlay').classList.add('open')">
+    <span class="feedback-fab-dot"></span>
+    Leave Feedback
+</button>
+
+<!-- ── FEEDBACK MODAL ── -->
+<div class="feedback-overlay" id="feedbackOverlay">
+    <div class="feedback-modal">
+        <h2>Leave Feedback</h2>
+        <p>Select a section, let Jules know your thoughts, then hit Submit. Your feedback goes directly to her via Google Forms.</p>
+
+        <form id="feedbackForm" onsubmit="submitFeedback(event)">
+            <div class="feedback-field">
+                <label>Section</label>
+                <select id="fb-section" required>
+                    <option value="">Select a persona / section...</option>
+                    <option value="Dr. A. Joe - Budget-Friendly">Dr. A. Joe — Budget-Friendly</option>
+                    <option value="Dr. Joey - Family-Focused Community">Dr. Joey — Family-Focused Community</option>
+                    <option value="Dr. K. Clarkson - Adult Cosmetic">Dr. K. Clarkson — Adult Cosmetic</option>
+                    <option value="Dr. Joseph - High-Expertise Clinical">Dr. Joseph — High-Expertise Clinical</option>
+                    <option value="Premium Family Ortho">Premium Family Ortho</option>
+                    <option value="General / Overall">General / Overall</option>
+                </select>
+            </div>
+
+            <div class="feedback-field">
+                <label>Your Decision</label>
+                <select id="fb-decision" required>
+                    <option value="">Select...</option>
+                    <option value="Approve">Approve</option>
+                    <option value="Request Revision">Request Revision</option>
+                    <option value="Question / Comment">Question / Comment</option>
+                </select>
+            </div>
+
+            <div class="feedback-field">
+                <label>Notes</label>
+                <textarea id="fb-notes" placeholder="Add your notes, revision requests, or questions here..."></textarea>
+            </div>
+
+            <div class="feedback-field">
+                <label>Your Name (optional)</label>
+                <input type="text" id="fb-name" placeholder="So Jules knows who's reviewing">
+            </div>
+
+            <div class="feedback-modal-actions">
+                <button type="submit" class="btn-submit-feedback">📬 Submit Feedback →</button>
+                <button type="button" class="btn-cancel-feedback" onclick="document.getElementById('feedbackOverlay').classList.remove('open')">Cancel</button>
+            </div>
+            <div class="feedback-form-note">Opens Google Form pre-filled with your selections — just click Send.</div>
+        </form>
+    </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   FORM CONFIGURATION
+   ──────────────────────────────────────────────────────
+   After creating your Google Form, update these values:
+   1. Set formUrl to your form's viewform URL
+   2. Set each field's entry ID (found in the pre-fill link)
+   3. Set isConfigured: true
+   ══════════════════════════════════════════════════════ */
+const FORM_CONFIG = {
+  formUrl:     'https://docs.google.com/forms/d/e/1FAIpQLSdNxImfpvESzHp8Et7xEu2BP40eF15o57ZpZzDuVJd0xnaaBQ/viewform',
+  fields: {
+    section:   'entry.1067005555',
+    decision:  'entry.1939413000',
+    notes:     'entry.1161349069',
+    reviewer:  'entry.1507204568',
+  },
+  isConfigured: true,
+};
+
+function submitFeedback(e) {
+  e.preventDefault();
+  const section  = document.getElementById('fb-section').value;
+  const decision = document.getElementById('fb-decision').value;
+  const notes    = document.getElementById('fb-notes').value.trim();
+  const name     = document.getElementById('fb-name').value.trim();
+
+  if (!FORM_CONFIG.isConfigured) {
+    // Fallback: mailto if form isn't configured yet
+    const subject = encodeURIComponent('Campaign Feedback: ' + section);
+    const body = encodeURIComponent(
+      'Section: ' + section + '\n' +
+      'Decision: ' + decision + '\n' +
+      (notes ? 'Notes: ' + notes + '\n' : '') +
+      (name  ? 'From: ' + name : '')
+    );
+    window.location.href = 'mailto:julesbatten.design@gmail.com?subject=' + subject + '&body=' + body;
+    document.getElementById('feedbackOverlay').classList.remove('open');
+    return;
+  }
+
+  const url = new URL(FORM_CONFIG.formUrl);
+  url.searchParams.set('usp', 'pp_url');
+  url.searchParams.set(FORM_CONFIG.fields.section,   section);
+  url.searchParams.set(FORM_CONFIG.fields.decision,  decision);
+  if (notes) url.searchParams.set(FORM_CONFIG.fields.notes,    notes);
+  if (name)  url.searchParams.set(FORM_CONFIG.fields.reviewer, name);
+
+  window.open(url.toString(), '_blank');
+  document.getElementById('feedbackOverlay').classList.remove('open');
+}
+
+// Close overlay on background click
+document.getElementById('feedbackOverlay').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+</script>
 
 </body>
 </html>
