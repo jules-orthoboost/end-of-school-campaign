@@ -1,655 +1,545 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>End of School Campaign</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrthoBoost · End of School Campaign Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #163055 0%, #29BBF6 100%);
-            min-height: 100vh;
-            padding: 30px 20px;
-        }
+  :root {
+    --bg: #0a0a0a;
+    --blue: #29BBF6;
+    --teal: #7AEFDF;
+    --navy: #163055;
+    --text: #fff;
+    --text-dim: rgba(255,255,255,0.5);
+    --text-muted: rgba(255,255,255,0.25);
+    --border: rgba(255,255,255,0.07);
+    --card-bg: rgba(255,255,255,0.025);
+  }
 
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
 
-        .logo {
-            font-size: 36px;
-            font-weight: 900;
-            color: white;
-            letter-spacing: -1px;
-        }
+  /* ── SETUP BANNER ── */
+  .setup-banner {
+    background: rgba(245,158,11,0.12);
+    border-bottom: 1px solid rgba(245,158,11,0.3);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #f59e0b;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-align: center;
+  }
+  .setup-banner.hidden { display: none; }
 
-        .logo span { color: #7AEFDF; }
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    padding: 56px 24px 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .header-logo {
+    font-size: 11px; font-weight: 800; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .header h1 {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.8px;
+    background: linear-gradient(90deg, #fff 40%, var(--teal));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .header p { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
+  .header-how-to {
+    display: inline-block;
+    background: rgba(122,239,223,0.08);
+    border: 1px solid rgba(122,239,223,0.2);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 20px;
+    max-width: 580px;
+    line-height: 1.6;
+  }
+  .header-how-to strong { color: var(--teal); }
+  .header-legend {
+    display: inline-flex; gap: 20px;
+    font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px;
+  }
+  .header-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-dot.pending  { background: #444; }
+  .legend-dot.approved { background: #22c55e; }
+  .legend-dot.revision { background: #f59e0b; }
 
-        .page-title {
-            font-size: 22px;
-            color: rgba(255,255,255,0.85);
-            margin-top: 8px;
-            font-weight: 400;
-        }
+  /* ── WRAPPER ── */
+  .wrapper { max-width: 1160px; margin: 0 auto; padding: 24px 24px 64px; }
 
-        .campaign-badge {
-            display: inline-block;
-            background: #7AEFDF;
-            color: #163055;
-            font-weight: 800;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 6px 18px;
-            border-radius: 20px;
-            margin-top: 10px;
-        }
+  /* ── ACCORDION SECTION ── */
+  .persona-section { margin-bottom: 12px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
 
-        .campaign-brief {
-            max-width: 800px;
-            margin: 0 auto 40px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 14px;
-            padding: 20px 28px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+  .persona-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 22px;
+    background: rgba(255,255,255,0.03);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.18s;
+    border-bottom: 1px solid var(--border);
+  }
+  .persona-header:hover { background: rgba(255,255,255,0.055); }
 
-        .brief-title {
-            color: #7AEFDF;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
+  .persona-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
 
-        .brief-text {
-            color: rgba(255,255,255,0.9);
-            font-size: 15px;
-            line-height: 1.6;
-        }
+  .persona-meta { flex: 1; min-width: 0; }
+  .persona-name {
+    font-size: 15px; font-weight: 800; letter-spacing: -0.3px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .persona-desc { font-size: 11px; color: var(--text-dim); font-weight: 500; margin-top: 2px; }
 
-        .brief-text strong { color: #7AEFDF; }
+  .persona-status-pills { display: flex; gap: 6px; flex-shrink: 0; }
+  .status-pill {
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.3);
+  }
+  .status-pill.pending  { background: #444; }
+  .status-pill.approved { background: #22c55e; }
+  .status-pill.revision { background: #f59e0b; }
 
-        .persona-section {
-            max-width: 1200px;
-            margin: 0 auto 50px;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
-        }
+  .chevron {
+    flex-shrink: 0; width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1), color 0.18s;
+  }
+  .chevron svg { display: block; }
+  .persona-section.open .chevron { transform: rotate(180deg); color: var(--teal); }
 
-        .persona-header {
-            padding: 24px 32px;
-            color: white;
-            position: relative;
-        }
+  /* ── ACCORDION BODY ── */
+  .persona-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.32s cubic-bezier(.4,0,.2,1);
+  }
+  .persona-section.open .persona-body { grid-template-rows: 1fr; }
+  .persona-body-inner { overflow: hidden; }
 
-        .persona-name {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-        }
+  /* ── CAMPAIGN GROUP LABEL ── */
+  .campaign-group {
+    padding: 14px 20px 6px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .campaign-group:first-of-type { border-top: none; padding-top: 20px; }
+  .campaign-group-pill {
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  .pill-eos { background: rgba(41,187,246,0.15); color: #29BBF6; }
+  .pill-summer { background: rgba(122,239,223,0.15); color: #7AEFDF; }
 
-        .persona-desc {
-            font-size: 14px;
-            opacity: 0.85;
-            margin-top: 4px;
-            font-weight: 500;
-        }
+  .grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    padding: 8px 20px 20px;
+  }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
 
-        .status-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 8px;
-            flex-wrap: wrap;
-        }
+  /* ── CARD ── */
+  .template-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+  }
+  .template-card img { width: 100%; height: auto; display: block; }
+  .card-label {
+    padding: 10px 14px; font-size: 12px; font-weight: 700;
+    color: var(--text-dim); border-top: 1px solid var(--border);
+    letter-spacing: 0.2px;
+  }
 
-        .status-badge {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            padding: 3px 10px;
-            border-radius: 10px;
-        }
+  /* ── FEEDBACK ── */
+  .feedback { padding: 14px 16px; border-top: 1px solid var(--border); }
 
-        .badge-approved { background: rgba(255,255,255,0.25); color: white; }
-        .badge-revised { background: #FDB913; color: #1a1a1a; }
-        .badge-new { background: #7AEFDF; color: #163055; }
+  .fb-buttons { display: flex; gap: 8px; margin-bottom: 10px; }
+  .fb-btn {
+    flex: 1; padding: 9px 10px;
+    border-radius: 9px; border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .fb-btn:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.15); }
+  .fb-btn-approve.active { background: rgba(34,197,94,0.15); border-color: #22c55e; color: #22c55e; }
+  .fb-btn-revise.active  { background: rgba(245,158,11,0.15); border-color: #f59e0b; color: #f59e0b; }
 
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
-        }
+  .fb-notes {
+    width: 100%; padding: 10px 12px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 9px; color: #fff; resize: vertical; min-height: 72px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; line-height: 1.5;
+    margin-bottom: 10px; transition: border-color 0.15s;
+  }
+  .fb-notes:focus { outline: none; border-color: rgba(122,239,223,0.35); }
+  .fb-notes::placeholder { color: var(--text-muted); }
 
-        .option-card {
-            padding: 28px 32px;
-            border-right: 1px solid #f0f0f0;
-            position: relative;
-        }
+  .fb-selection-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 8px;
+  }
 
-        .option-card:nth-child(even) { border-right: none; }
+  .fb-submit {
+    width: 100%; padding: 11px 16px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(41,187,246,0.15), rgba(122,239,223,0.15));
+    border: 1px solid rgba(122,239,223,0.3);
+    color: var(--teal);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.5px;
+    cursor: pointer; transition: all 0.18s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .fb-submit:hover {
+    background: linear-gradient(135deg, rgba(41,187,246,0.25), rgba(122,239,223,0.25));
+    border-color: rgba(122,239,223,0.55);
+  }
 
-        .option-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            font-weight: 800;
-            font-size: 13px;
-            color: white;
-            margin-bottom: 14px;
-        }
+  .fb-submitted-badge {
+    display: none;
+    align-items: center; justify-content: center; gap: 6px;
+    width: 100%; padding: 10px;
+    border-radius: 9px;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #22c55e;
+    font-size: 12px; font-weight: 700;
+    margin-top: 8px;
+  }
+  .fb-submitted-badge.show { display: flex; }
 
-        .copy-heading {
-            font-size: 22px;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 10px;
-            color: #111;
-            letter-spacing: -0.3px;
-        }
-
-        .copy-subheading {
-            font-size: 14px;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 14px;
-        }
-
-        .copy-offer {
-            display: inline-block;
-            border: 2px dashed #ccc;
-            color: #888;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 8px 14px;
-            border-radius: 6px;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-        }
-
-        .copy-cta {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 800;
-            color: white;
-            letter-spacing: 0.3px;
-        }
-
-        /* Persona Color Themes */
-        .joe .persona-header { background: linear-gradient(135deg, #3182CE, #5B9BD5); }
-        .joe .option-number { background: #3182CE; }
-        .joe .copy-cta { background: #FDB913; color: #1a1a1a; }
-
-        .joey .persona-header { background: linear-gradient(135deg, #DD6B20, #ED7D52); }
-        .joey .option-number { background: #DD6B20; }
-        .joey .copy-cta { background: #DD6B20; }
-
-        .clarkson .persona-header { background: linear-gradient(135deg, #805AD5, #9F7AEA); }
-        .clarkson .option-number { background: #805AD5; }
-        .clarkson .copy-cta { background: #805AD5; }
-
-        .joseph .persona-header { background: linear-gradient(135deg, #2B6CB0, #2C5282); }
-        .joseph .option-number { background: #2B6CB0; }
-        .joseph .copy-cta { background: #2C5282; }
-
-        .premium .persona-header { background: linear-gradient(135deg, #276749, #38A169); }
-        .premium .option-number { background: #276749; }
-        .premium .copy-cta { background: #276749; }
-
-        @media (max-width: 700px) {
-            .options-grid { grid-template-columns: 1fr; }
-            .option-card { border-right: none; border-bottom: 1px solid #f0f0f0; }
-            .option-card:last-child { border-bottom: none; }
-        }
-
-        /* ── FLOATING FEEDBACK BUTTON ── */
-        .feedback-fab {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 22px;
-            background: #163055;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            cursor: pointer;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.35);
-            text-decoration: none;
-            transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-        }
-        .feedback-fab:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 32px rgba(0,0,0,0.4);
-            background: #1a3d6e;
-        }
-        .feedback-fab-dot {
-            width: 8px;
-            height: 8px;
-            background: #7AEFDF;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        /* ── FEEDBACK MODAL OVERLAY ── */
-        .feedback-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .feedback-overlay.open { display: flex; }
-
-        .feedback-modal {
-            background: white;
-            border-radius: 20px;
-            padding: 32px;
-            max-width: 500px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        .feedback-modal h2 {
-            font-size: 22px;
-            font-weight: 900;
-            color: #111;
-            margin-bottom: 6px;
-        }
-        .feedback-modal p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 22px;
-            line-height: 1.5;
-        }
-        .feedback-field { margin-bottom: 16px; }
-        .feedback-field label {
-            display: block;
-            font-size: 12px;
-            font-weight: 700;
-            color: #444;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-        .feedback-field select,
-        .feedback-field textarea,
-        .feedback-field input {
-            width: 100%;
-            padding: 10px 14px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 14px;
-            color: #111;
-            transition: border-color 0.15s;
-            resize: vertical;
-        }
-        .feedback-field select:focus,
-        .feedback-field textarea:focus,
-        .feedback-field input:focus {
-            outline: none;
-            border-color: #29BBF6;
-        }
-        .feedback-field textarea { min-height: 100px; }
-        .feedback-modal-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 6px;
-        }
-        .btn-submit-feedback {
-            flex: 1;
-            padding: 12px 20px;
-            background: #163055;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-        .btn-submit-feedback:hover { background: #1a3d6e; }
-        .btn-cancel-feedback {
-            padding: 12px 20px;
-            background: #f3f4f6;
-            color: #555;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .btn-cancel-feedback:hover { background: #e5e7eb; }
-
-        .feedback-form-note {
-            font-size: 11px;
-            color: #aaa;
-            text-align: center;
-            margin-top: 10px;
-        }
-    </style>
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center; padding: 24px;
+    font-size: 10px; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase;
+    border-top: 1px solid var(--border);
+  }
+</style>
 </head>
 <body>
 
-<div class="page-header">
-    <div class="logo">Ortho<span>Boost</span></div>
-    <div class="page-title">Campaign Copy Framework</div>
-    <div class="campaign-badge">🎓 End of School Campaign · Revised v2.0</div>
+<div class="setup-banner" id="setupBanner">
+  ⚙️ &nbsp;<strong>Setup needed:</strong>&nbsp; Replace <code>YOUR_GOOGLE_FORM_URL</code> and entry IDs in the FORM_CONFIG below to activate feedback submission.
 </div>
 
-<div class="campaign-brief">
-    <div class="brief-title">Campaign Goal</div>
-    <div class="brief-text">
-        <strong>Beat the summer rush</strong> - get patients to schedule treatment <strong>before summer starts</strong>.
-        Two approved headline options per ortho persona. All copy refocused on pre-summer urgency and strategic timing.
-    </div>
+<div class="header">
+  <div class="header-logo">OrthoBoost</div>
+  <h1>Campaign Templates</h1>
+  <p>End of School · Summer 2026 · 6 Personas · V1 &amp; V2 per Persona</p>
+  <div class="header-how-to">
+    <strong>How to review:</strong> Select Approve or Request Revision for each template, add any notes, then click <strong>Submit to Jules</strong>. Your feedback opens in a quick Google Form — just hit Send.
+  </div>
+  <div class="header-legend">
+    <span><span class="legend-dot pending"></span> Not Yet Reviewed</span>
+    <span><span class="legend-dot approved"></span> Approved</span>
+    <span><span class="legend-dot revision"></span> Revision Requested</span>
+  </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- DR. A. JOE - Budget-Friendly Everyday Ortho -->
-<!-- ============================================================ -->
-<div class="persona-section joe">
-    <div class="persona-header">
-        <div class="persona-name">Dr. A. Joe - Budget-Friendly Everyday Ortho</div>
-        <div class="persona-desc">Budget-conscious families · Value shoppers · Mixed ages · Convenience-first</div>
-        <div class="status-row">
-            <span class="status-badge badge-approved">✓ Both Approved</span>
-        </div>
-    </div>
-    <div class="options-grid">
-
-        <div class="option-card">
-            <div class="option-number">1</div>
-            <div class="copy-heading">Before School Ends = Best Time to Start</div>
-            <div class="copy-subheading">Payment plans built for real families. Get ahead of the rush.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Book Your Free Consultation →</div>
-        </div>
-
-        <div class="option-card">
-            <div class="option-number">2</div>
-            <div class="copy-heading">Don't Wait Until Summer</div>
-            <div class="copy-subheading">Schedule now and beat the summer rush!</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Start Today →</div>
-        </div>
-
-    </div>
+<div class="wrapper">
+  <div id="app"></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- DR. JOEY - Family-Focused Community Ortho -->
-<!-- ============================================================ -->
-<div class="persona-section joey">
-    <div class="persona-header">
-        <div class="persona-name">Dr. Joey - Family-Focused Community Ortho</div>
-        <div class="persona-desc">Families with kids & teens · Suburban + rural markets · Community-driven parents</div>
-        <div class="status-row">
-            <span class="status-badge badge-approved">✓ Both Approved</span>
-        </div>
-    </div>
-    <div class="options-grid">
-
-        <div class="option-card">
-            <div class="option-number">1</div>
-            <div class="copy-heading">Celebrate the End of School With a New Smile</div>
-            <div class="copy-subheading">School's almost out. It's the perfect time to give them the smile they deserve.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Schedule a Family Visit →</div>
-        </div>
-
-        <div class="option-card">
-            <div class="option-number">2</div>
-            <div class="copy-heading">Their Best Summer Starts With Their Best Smile</div>
-            <div class="copy-subheading">Beat the summer rush! Get them in before school lets out.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Book a Free Consultation →</div>
-        </div>
-
-    </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- DR. K. CLARKSON - Adult Cosmetic-Focused Aesthetic Ortho -->
-<!-- ============================================================ -->
-<div class="persona-section clarkson">
-    <div class="persona-header">
-        <div class="persona-name">Dr. K. Clarkson - Adult Cosmetic-Focused Aesthetic Ortho</div>
-        <div class="persona-desc">Adults 25–55 · Cosmetic-driven patients · Professionals · Image-conscious</div>
-        <div class="status-row">
-            <span class="status-badge badge-approved">✓ Both Approved - originals #1 & #3</span>
-        </div>
-    </div>
-    <div class="options-grid">
-
-        <div class="option-card">
-            <div class="option-number">1</div>
-            <div class="copy-heading">This Summer, Let Your Smile Do the Talking</div>
-            <div class="copy-subheading">Start now and step into summer with the confidence you've been putting off.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Start Your Transformation →</div>
-        </div>
-
-        <div class="option-card">
-            <div class="option-number">2</div>
-            <div class="copy-heading">Your Summer Confidence Starts Here</div>
-            <div class="copy-subheading">Don't wait until summer. Discreet treatment, modern results.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Book Your Consultation →</div>
-        </div>
-
-    </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- DR. JOSEPH - High-Expertise Clinical Ortho -->
-<!-- ============================================================ -->
-<div class="persona-section joseph">
-    <div class="persona-header">
-        <div class="persona-name">Dr. Joseph - High-Expertise Clinical Ortho</div>
-        <div class="persona-desc">Adults seeking expertise · Complex-case teens · Referral-driven · Credentials-first</div>
-        <div class="status-row">
-            <span class="status-badge badge-revised">↻ Both Revised</span>
-        </div>
-    </div>
-    <div class="options-grid">
-
-        <div class="option-card">
-            <div class="option-number">1</div>
-            <div class="copy-heading">Expert Orthodontic Care. Now Accepting New Patients.</div>
-            <div class="copy-subheading">The right time to get the care you deserve.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Request Your Expert Consultation →</div>
-        </div>
-
-        <div class="option-card">
-            <div class="option-number">2</div>
-            <div class="copy-heading">The Right Care Starts With the Right Timing.</div>
-            <div class="copy-subheading">Now accepting new patients. Get the care you deserve.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Talk to Our Team →</div>
-        </div>
-
-    </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- PREMIUM FAMILY ORTHO -->
-<!-- ============================================================ -->
-<div class="persona-section premium">
-    <div class="persona-header">
-        <div class="persona-name">Premium Family Ortho</div>
-        <div class="persona-desc">Middle to upper-middle income families · Quality-first parents · Adults seeking Invisalign · Suburban + urban markets</div>
-        <div class="status-row">
-            <span class="status-badge badge-approved">✓ #1 Approved</span>
-            <span class="status-badge badge-new">★ #2 New</span>
-        </div>
-    </div>
-    <div class="options-grid">
-
-        <div class="option-card">
-            <div class="option-number">1</div>
-            <div class="copy-heading">Outstanding Care Shouldn't Wait Until Summer</div>
-            <div class="copy-subheading">Secure preferred appointment times before schedules fill up.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Reserve Your Appointment →</div>
-        </div>
-
-        <div class="option-card">
-            <div class="option-number">2</div>
-            <div class="copy-heading">Give Them a Head Start on Their Best Summer Yet</div>
-            <div class="copy-subheading">Beat the rush and secure one of our limited appointment times.</div>
-            <div class="copy-offer">[ Client-Specific Offer ]</div><br>
-            <div class="copy-cta">Schedule a Consultation →</div>
-        </div>
-
-    </div>
-</div>
-
-<div style="text-align:center; color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 10px; padding-bottom: 80px;">
-    OrthoBoost · End of School Campaign · Revised Copy v2.0 · March 2026 · All offer details client-specific
-</div>
-
-<!-- ── FLOATING FEEDBACK BUTTON ── -->
-<button class="feedback-fab" onclick="document.getElementById('feedbackOverlay').classList.add('open')">
-    <span class="feedback-fab-dot"></span>
-    Leave Feedback
-</button>
-
-<!-- ── FEEDBACK MODAL ── -->
-<div class="feedback-overlay" id="feedbackOverlay">
-    <div class="feedback-modal">
-        <h2>Leave Feedback</h2>
-        <p>Select a section, let Jules know your thoughts, then hit Submit. Your feedback goes directly to her via Google Forms.</p>
-
-        <form id="feedbackForm" onsubmit="submitFeedback(event)">
-            <div class="feedback-field">
-                <label>Section</label>
-                <select id="fb-section" required>
-                    <option value="">Select a persona / section...</option>
-                    <option value="Dr. A. Joe - Budget-Friendly">Dr. A. Joe — Budget-Friendly</option>
-                    <option value="Dr. Joey - Family-Focused Community">Dr. Joey — Family-Focused Community</option>
-                    <option value="Dr. K. Clarkson - Adult Cosmetic">Dr. K. Clarkson — Adult Cosmetic</option>
-                    <option value="Dr. Joseph - High-Expertise Clinical">Dr. Joseph — High-Expertise Clinical</option>
-                    <option value="Premium Family Ortho">Premium Family Ortho</option>
-                    <option value="General / Overall">General / Overall</option>
-                </select>
-            </div>
-
-            <div class="feedback-field">
-                <label>Your Decision</label>
-                <select id="fb-decision" required>
-                    <option value="">Select...</option>
-                    <option value="Approve">Approve</option>
-                    <option value="Request Revision">Request Revision</option>
-                    <option value="Question / Comment">Question / Comment</option>
-                </select>
-            </div>
-
-            <div class="feedback-field">
-                <label>Notes</label>
-                <textarea id="fb-notes" placeholder="Add your notes, revision requests, or questions here..."></textarea>
-            </div>
-
-            <div class="feedback-field">
-                <label>Your Name (optional)</label>
-                <input type="text" id="fb-name" placeholder="So Jules knows who's reviewing">
-            </div>
-
-            <div class="feedback-modal-actions">
-                <button type="submit" class="btn-submit-feedback">📬 Submit Feedback →</button>
-                <button type="button" class="btn-cancel-feedback" onclick="document.getElementById('feedbackOverlay').classList.remove('open')">Cancel</button>
-            </div>
-            <div class="feedback-form-note">Opens Google Form pre-filled with your selections — just click Send.</div>
-        </form>
-    </div>
-</div>
+<div class="footer">OrthoBoost · Campaign Templates · 2026</div>
 
 <script>
 /* ══════════════════════════════════════════════════════
    FORM CONFIGURATION
    ──────────────────────────────────────────────────────
-   After creating your Google Form, update these values:
-   1. Set formUrl to your form's viewform URL
-   2. Set each field's entry ID (found in the pre-fill link)
-   3. Set isConfigured: true
+   Steps to set up:
+   1. Go to forms.google.com and create a new form
+   2. Add these 4 questions:
+        - "Template" (Short answer)
+        - "Decision" (Multiple choice: Approve / Request Revision)
+        - "Notes" (Paragraph)
+        - "Your name" (Short answer, not required)
+   3. Click the 3-dot menu → Get pre-filled link
+   4. Fill in dummy values, click Get Link, copy the URL
+   5. From that URL, find the entry IDs (entry.XXXXXXXXX)
+      and paste them below
+   6. Paste your form's viewform URL into formUrl
+   7. Set isConfigured: true
    ══════════════════════════════════════════════════════ */
 const FORM_CONFIG = {
-  formUrl:     'https://docs.google.com/forms/d/e/1FAIpQLSdNxImfpvESzHp8Et7xEu2BP40eF15o57ZpZzDuVJd0xnaaBQ/viewform',
+  formUrl:      'https://docs.google.com/forms/d/e/1FAIpQLSdNxImfpvESzHp8Et7xEu2BP40eF15o57ZpZzDuVJd0xnaaBQ/viewform',
   fields: {
-    section:   'entry.1067005555',
-    decision:  'entry.1939413000',
-    notes:     'entry.1161349069',
-    reviewer:  'entry.1507204568',
+    template:   'entry.1067005555',
+    decision:   'entry.1939413000',
+    notes:      'entry.1161349069',
+    reviewer:   'entry.1507204568',
   },
   isConfigured: true,
 };
 
-function submitFeedback(e) {
-  e.preventDefault();
-  const section  = document.getElementById('fb-section').value;
-  const decision = document.getElementById('fb-decision').value;
-  const notes    = document.getElementById('fb-notes').value.trim();
-  const name     = document.getElementById('fb-name').value.trim();
+if (FORM_CONFIG.isConfigured) {
+  document.getElementById('setupBanner').classList.add('hidden');
+}
+
+/* ── Persona + template data ── */
+const personas = [
+  {
+    id: 'joe', icon: '💰', name: 'Dr. A. Joe', desc: 'Budget-Friendly Everyday Ortho',
+    endOfSchool: [
+      { id: 'joe-eos-v1', img: 'End-of-School_V1_Static_Dr-Joe-Client-Template.png',      label: 'End of School · V1' },
+      { id: 'joe-eos-v2', img: 'End-of-School_V2_Static_Dr-Joe-Client-Template.png',      label: "End of School · V2" },
+    ],
+    summer: [
+      { id: 'joe-sum-v1', img: '1_TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. A. Joe.png', label: 'Summer 2026 · V1' },
+      { id: 'joe-sum-v2', img: '4_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. A. Joe.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'rogers', icon: '👨‍👩‍👧', name: 'Dr. M. Rogers', desc: 'Family-Focused Community Ortho',
+    endOfSchool: [
+      { id: 'rogers-eos-v1', img: 'End-of-School_V1_Static_Dr-Rogers-Client-Template.png', label: 'End of School · V1' },
+      { id: 'rogers-eos-v2', img: 'End-of-School_V2_Static_Dr-Rogers-Client-Template.png', label: 'End of School · V2' },
+    ],
+    summer: [
+      { id: 'rogers-sum-v1', img: '8_TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. M. Rogers.png', label: 'Summer 2026 · V1' },
+      { id: 'rogers-sum-v2', img: '2_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. M. Rogers.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'clarkson', icon: '✨', name: 'Dr. K. Clarkson', desc: 'Adult Cosmetic-Focused Aesthetic Ortho',
+    endOfSchool: [
+      { id: 'clarkson-eos-v1', img: 'End-of-School_V1_Static_Dr-Clarkson-Client-Template.png', label: 'End of School · V1' },
+      { id: 'clarkson-eos-v2', img: 'End-of-School_V2_Static_Dr-Clarkson-Client-Template.png', label: 'End of School · V2' },
+    ],
+    summer: [
+      { id: 'clarkson-sum-v1', img: '3_TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. K Clarkson.png', label: 'Summer 2026 · V1' },
+      { id: 'clarkson-sum-v2', img: '7_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. K Clarkson.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'houser', icon: '🏠', name: 'Dr. D. Houser', desc: 'Community & Kids-Focused Ortho',
+    endOfSchool: [],
+    summer: [
+      { id: 'houser-sum-v1', img: '5_TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. D Houser.png', label: 'Summer 2026 · V1' },
+      { id: 'houser-sum-v2', img: '9_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. D Houser.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'yang', icon: '🔬', name: 'Dr. C. Yang', desc: 'High-Expertise Clinical Ortho',
+    endOfSchool: [
+      { id: 'yang-eos-v1', img: 'End-of-School_V1_Static_Dr-Yang-Client-Template.png', label: 'End of School · V1' },
+      { id: 'yang-eos-v2', img: 'End-of-School_V2_Static_Dr-Yang-Client-Template.png', label: 'End of School · V2' },
+    ],
+    summer: [
+      { id: 'yang-sum-v1', img: '10_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. C Yang.png', label: 'Summer 2026 · V1' },
+      { id: 'yang-sum-v2', img: '12_TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. C Yang.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+  {
+    id: 'house', icon: '🏛️', name: 'Dr. G. House', desc: 'Premium Family Ortho',
+    endOfSchool: [
+      { id: 'house-eos-v1', img: 'End-of-School_V1_Static_Dr-House-Client-Template.png', label: 'End of School · V1' },
+      { id: 'house-eos-v2', img: 'End-of-School_V2_Static_Dr-House-Client-Template.png', label: 'End of School · V2' },
+    ],
+    summer: [
+      { id: 'house-sum-v1', img: 'TEMPLATE_Seasonal_Summer-2026_Image_v1_Post_Dr. G House.png', label: 'Summer 2026 · V1' },
+      { id: 'house-sum-v2', img: 'TEMPLATE_Seasonal_Summer-2026_Image_v2_Post_Dr. G House.png', label: 'Summer 2026 · V2' },
+    ],
+  },
+];
+
+/* ── Session state ── */
+const sessionState = {};
+function getState(id) {
+  return sessionState[id] || (sessionState[id] = { status: 'pending', note: '', submitted: false });
+}
+
+/* ── Build Google Form pre-fill URL ── */
+function buildFormUrl(templateLabel, personaName, status, notes) {
+  if (!FORM_CONFIG.isConfigured) return null;
+  const url = new URL(FORM_CONFIG.formUrl);
+  url.searchParams.set('usp', 'pp_url');
+  url.searchParams.set(FORM_CONFIG.fields.template, `${personaName} — ${templateLabel}`);
+  url.searchParams.set(FORM_CONFIG.fields.decision, status === 'approved' ? 'Approve' : 'Request Revision');
+  if (notes) url.searchParams.set(FORM_CONFIG.fields.notes, notes);
+  return url.toString();
+}
+
+function submitFeedback(id, templateLabel, personaName) {
+  const state = getState(id);
+  const note = document.getElementById('notes-' + id)?.value?.trim() || '';
+  state.note = note;
 
   if (!FORM_CONFIG.isConfigured) {
-    // Fallback: mailto if form isn't configured yet
-    const subject = encodeURIComponent('Campaign Feedback: ' + section);
-    const body = encodeURIComponent(
-      'Section: ' + section + '\n' +
-      'Decision: ' + decision + '\n' +
-      (notes ? 'Notes: ' + notes + '\n' : '') +
-      (name  ? 'From: ' + name : '')
-    );
-    window.location.href = 'mailto:julesbatten.design@gmail.com?subject=' + subject + '&body=' + body;
-    document.getElementById('feedbackOverlay').classList.remove('open');
+    alert('The feedback form hasn\'t been configured yet. Please contact Jules directly.');
     return;
   }
 
-  const url = new URL(FORM_CONFIG.formUrl);
-  url.searchParams.set('usp', 'pp_url');
-  url.searchParams.set(FORM_CONFIG.fields.section,   section);
-  url.searchParams.set(FORM_CONFIG.fields.decision,  decision);
-  if (notes) url.searchParams.set(FORM_CONFIG.fields.notes,    notes);
-  if (name)  url.searchParams.set(FORM_CONFIG.fields.reviewer, name);
-
-  window.open(url.toString(), '_blank');
-  document.getElementById('feedbackOverlay').classList.remove('open');
+  const formUrl = buildFormUrl(templateLabel, personaName, state.status, note);
+  if (formUrl) {
+    window.open(formUrl, '_blank');
+    state.submitted = true;
+    render();
+  }
 }
 
-// Close overlay on background click
-document.getElementById('feedbackOverlay').addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('open');
-});
-</script>
+function setStatus(id, status) {
+  const state = getState(id);
+  state.status = status;
+  state.submitted = false;
+  const noteEl = document.getElementById('notes-' + id);
+  if (noteEl) state.note = noteEl.value;
+  render();
+}
 
+function onNoteInput(id) {
+  const noteEl = document.getElementById('notes-' + id);
+  if (noteEl) getState(id).note = noteEl.value;
+}
+
+const openSections = new Set();
+
+function toggleSection(pid) {
+  const el = document.querySelector(`.persona-section[data-pid="${pid}"]`);
+  if (!el) return;
+  if (el.classList.contains('open')) { openSections.delete(pid); el.classList.remove('open'); }
+  else { openSections.add(pid); el.classList.add('open'); }
+}
+
+/* ── Build a single template card ── */
+function buildCard(t, personaName) {
+  const state = getState(t.id);
+  const sc = state.status;
+  const approveActive = sc === 'approved' ? 'active' : '';
+  const reviseActive  = sc === 'revision'  ? 'active' : '';
+  const submittedBadge = state.submitted
+    ? `<div class="fb-submitted-badge show">✓ Feedback sent — thank you!</div>` : '';
+
+  const safeLabel = t.label.replace(/'/g, "\\'");
+  const safeName  = personaName.replace(/'/g, "\\'");
+
+  return `
+    <div class="template-card">
+      <img src="${t.img}" alt="${t.label}" loading="lazy">
+      <div class="card-label">${t.label}</div>
+      <div class="feedback">
+        <div class="fb-selection-label">Your decision</div>
+        <div class="fb-buttons">
+          <button class="fb-btn fb-btn-approve ${approveActive}" onclick="setStatus('${t.id}','approved')">✓ Approve</button>
+          <button class="fb-btn fb-btn-revise ${reviseActive}"  onclick="setStatus('${t.id}','revision')">↻ Request Revision</button>
+        </div>
+        <textarea
+          class="fb-notes"
+          id="notes-${t.id}"
+          placeholder="Add notes or revision details (optional)..."
+          oninput="onNoteInput('${t.id}')"
+        >${state.note || ''}</textarea>
+        <button class="fb-submit" onclick="submitFeedback('${t.id}','${safeLabel}','${safeName}')">
+          📬 Submit to Jules →
+        </button>
+        ${submittedBadge}
+      </div>
+    </div>`;
+}
+
+/* ── Render ── */
+function render() {
+  const app = document.getElementById('app');
+  let html = '';
+
+  personas.forEach(p => {
+    const isOpen = openSections.has(p.id) || (openSections.size === 0);
+    if (openSections.size === 0) openSections.add(p.id);
+
+    // Collect all template IDs for status pills
+    const allTemplates = [...p.endOfSchool, ...p.summer];
+    const pillsHtml = allTemplates.map(t => {
+      const s = getState(t.id).status;
+      return `<span class="status-pill ${s}"></span>`;
+    }).join('');
+
+    // Build End of School section
+    let eosSection = '';
+    if (p.endOfSchool.length > 0) {
+      eosSection = `
+        <div class="campaign-group">
+          End of School <span class="campaign-group-pill pill-eos">Static</span>
+        </div>
+        <div class="grid">
+          ${p.endOfSchool.map(t => buildCard(t, p.name)).join('')}
+        </div>`;
+    }
+
+    // Build Summer section
+    let sumSection = '';
+    if (p.summer.length > 0) {
+      sumSection = `
+        <div class="campaign-group">
+          Summer 2026 <span class="campaign-group-pill pill-summer">Social Post</span>
+        </div>
+        <div class="grid">
+          ${p.summer.map(t => buildCard(t, p.name)).join('')}
+        </div>`;
+    }
+
+    html += `
+      <div class="persona-section ${isOpen ? 'open' : ''}" data-pid="${p.id}">
+        <div class="persona-header" onclick="toggleSection('${p.id}')">
+          <span class="persona-icon">${p.icon}</span>
+          <div class="persona-meta">
+            <div class="persona-name">${p.name}</div>
+            <div class="persona-desc">${p.desc}</div>
+          </div>
+          <div class="persona-status-pills">${pillsHtml}</div>
+          <div class="chevron">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-body-inner">
+            ${eosSection}
+            ${sumSection}
+          </div>
+        </div>
+      </div>`;
+  });
+
+  app.innerHTML = html;
+}
+
+render();
+</script>
 </body>
 </html>
